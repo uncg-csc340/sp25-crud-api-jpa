@@ -1,4 +1,4 @@
-# Students API
+# Students API {#top}
 ## Description
 Simple CRUD API for Student Objects
 ### Version
@@ -23,7 +23,7 @@ Simple CRUD API for Student Objects
       - OR edit `datasource.url` to point to a database that you do have.
 - Build and run the main class. You should see a new table created in the aforementioned database.
 
-## API Endpoints
+## API Endpoints {#api-doc}
 Base URL: [`http://localhost:8080/students`](http://localhost:8080/students)
 
 
@@ -48,6 +48,7 @@ Gets a list of all Students in the database.
   }
 ]
 ```
+[Back to Top](#top)
 ### [`/{studentId}`](http://localhost:8080/students/1) (GET)
 Gets an individual Student in the system. Each Student is identified by a numeric `studentId`
 
@@ -64,6 +65,7 @@ Gets an individual Student in the system. Each Student is identified by a numeri
   "gpa": 3.88
 }
 ```
+[Back to Top](#top)
 ### [`/name`](http://localhost:8080/students/name?search=ob) (GET)
 Gets a list of students with a name that contains the given string.
 
@@ -88,7 +90,7 @@ Gets a list of students with a name that contains the given string.
   }
 ]
 ```
-
+[Back to Top](#top)
 ### [`/major/{major}`](http://localhost:8080/students/major/csc) (GET)
 Gets a list of students for a named major.
 
@@ -112,7 +114,8 @@ Gets a list of students for a named major.
     "gpa": 3.65
   }
 ]
-``` 
+```
+[Back to Top](#top)
 ### [`/honors`](http://localhost:8080/students/honors?gpa=3.5) (GET)
 Gets a list of students with a GPA meeting the Threshold.
 
@@ -137,7 +140,7 @@ Gets a list of students with a GPA meeting the Threshold.
   }
 ]
 ```
-
+[Back to Top](#top)
 ### [`/new`](http://localhost:8080/students/new) (POST)
 Create  a new Student entry
  
@@ -174,7 +177,7 @@ A student object. Note that the studentId is auto assigned in the database so is
   }
 ]
 ```
-
+[Back to Top](#top)
 ### [`/update/{studentId}`](http://localhost:8080/students/update/1) (PUT)
 Update an existing Student.
 
@@ -199,7 +202,7 @@ A student object with the updates.
   "gpa": 3.45
 }
 ```
-
+[Back to Top](#top)
 ### [`/delete/{studentId}`](http://localhost:8080/students/delete/1) (DELETE)
 Delete an existing Student.
 
