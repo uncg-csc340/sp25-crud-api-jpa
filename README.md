@@ -21,6 +21,7 @@ Simple CRUD API for Student Objects
     - Ensure the database that you need is available. Either
       - Create a database called `student-database`
       - OR edit `datasource.url` to point to a database that you do have.
+  - Verify your username and password is spelled correctly in the propertoes file.
 - Build and run the main class. You should see a new table created in the aforementioned database.
 ## Notes
 - [Entity](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/8a7a97df778a6bb2280d680a80f3c3ffe6166ec1/src/main/java/com/csc340/sp25_crud_api_demo/student/Student.java#L5)
