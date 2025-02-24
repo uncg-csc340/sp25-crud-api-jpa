@@ -200,7 +200,7 @@ A student object with the updates.
 }
 ```
 
-### [`/delete/{studentId}`](http://localhost:8080/students/delete/1) (PUT)
+### [`/delete/{studentId}`](http://localhost:8080/students/delete/1) (DELETE)
 Delete an existing Student.
 
 #### Parameters
