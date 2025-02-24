@@ -29,7 +29,7 @@ Simple CRUD API for Student Objects
   - Any Entity must have at least one attribute that is annotated as an `@Id`. In our case it's conveniently the `studentId` attribute.
     - We are also using an autogeneration strategy for the ID. This way we are not manually assigning IDs to our students. This is optional.
   - An Entity must have a no-argument constructor.
-- [Repository](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/8a7a97df778a6bb2280d680a80f3c3ffe6166ec1/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentService.java#L15)
+- [Repository](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/35cd43dd1a489a7f69dcee6f1d62b9e77a37b032/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentRepository.java#L12)
   - We are using an extension of the JPA Repository that comes with prebuilt database operations such as select all, select by id, select by any other reference, insert, delete, etc.
   - Annotate it as a `@Repository`.
   - We parametrize this using our object and its ID type.
