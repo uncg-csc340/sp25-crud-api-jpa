@@ -8,8 +8,8 @@ Simple CRUD API for Student Objects
 - Get the project
     - clone
   
-        `git clone https://github.com/uncg-csc340/sp25-crud-api-jpa.git`
-    - OR download zip.
+        `git clone https://github.com/uncg-csc340/sp25-crud-api-jpa.git` OR
+    - download zip.
 - Open the project in IntelliJ.
 - This project is built to run with jdk 21.
 - [`/src/main/resources/application.properties`](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/d117dd0cad30a0453254dd261248c249be9654aa/src/main/resources/application.properties) file  is the configuration for the MySQL database on your localhost.
@@ -24,18 +24,13 @@ Simple CRUD API for Student Objects
 - Build and run the main class. You should see a new table created in the aforementioned database.
 
 ## API Endpoints
-Use POSTMAN to try the following endpoints:
+Base URL: [`http://localhost:8080/students`](http://localhost:8080/students)
 
-## Get list of Students
 
-### Request
+### [`/all`](http://localhost:8080/students/all) (GET)
+Gets a list of all Students in the database.
 
-    `GET /students/all`
-
-    `http://localhost:8080/students/all`
-
-   
-### Response
+#### Response - A JSON array of Student objects.
 
  ```
 [
@@ -53,15 +48,13 @@ Use POSTMAN to try the following endpoints:
   }
 ]
 ```
-## Get a specific Student
+### [`/{studentId}`](http://localhost:8080/students/1) (GET)
+Gets an individual Student in the system. Each Student is identified by a numeric `studentId`
 
-### Request
+#### Parameters
+- Path Variable: `studentId` <integer> - REQUIRED
 
-`GET /students/{studentId}`
-
-`http://localhost:8080/students/1`
-
-### Response
+#### Response - A single Student
 
 ```
 {
@@ -71,109 +64,162 @@ Use POSTMAN to try the following endpoints:
   "gpa": 3.88
 }
 ```
+### [`/name`](http://localhost:8080/students/name?search=ob) (GET)
+Gets a list of students with a name that contains the given string.
 
-     
-## Create a new Student
+#### Parameters
+- query parameter: `search` <String> - REQUIRED
 
-### Request
+#### Response - A JSON array of Student objects.
 
-    POST /students/new
-    
-    http://localhost:8080/students/new --data '{ "name": "sample4", "major": "csc", "gpa": 3.55}'
+```
+[
+  {
+    "studentId": 2,
+    "name": "Bobby Stewart",
+    "major": "MAT",
+    "gpa": 2.97
+  },
+  {
+    "studentId": 5,
+    "name": "Jobadiah Evans",
+    "major": "REL",
+    "gpa": 3.46
+  }
+]
+```
 
-   ### Response
+### [`/major/{major}`](http://localhost:8080/students/major/csc) (GET)
+Gets a list of students for a named major.
 
-   [
-   
-     {"studentId": 1, "name": "sample1", "major": "csc", "gpa": 3.89}, 
-   
-     {"studentId": 2, "name": "sample2", "major": "mat", "gpa": 4.0}, 
-   
-     { "studentId": 3, "name": "sample3", "major": "eng", "gpa": 3.25},
+#### Parameters
+- path variable: `major` <String> - REQUIRED
 
-     { "studentId": 4, "name": "sample4", "major": "csc", "gpa": 3.55}
-   
-  ]
+#### Response - A JSON array of Student objects.
 
-## Get Students by major
+```
+[
+  {
+    "studentId": 1,
+    "name": "Alice Smith",
+    "major": "CSC",
+    "gpa": 2.97
+  },
+  {
+    "studentId": 7,
+    "name": "John Doe",
+    "major": "CSC",
+    "gpa": 3.65
+  }
+]
+``` 
+### [`/honors`](http://localhost:8080/students/honors?gpa=3.5) (GET)
+Gets a list of students with a GPA meeting the Threshold.
 
-### Request
+#### Parameters
+- query parameter: `gpa` <Double> - REQUIRED
 
-    `GET /students?major=csc`
+#### Response - A JSON array of Student objects.
 
-    `http://localhost:8080/students?major=csc`
+```
+[
+  {
+    "studentId": 1,
+    "name": "Alice Smith",
+    "major": "CSC",
+    "gpa": 3.88
+  },
+  {
+    "studentId": 7,
+    "name": "John Doe",
+    "major": "CSC",
+    "gpa": 3.65
+  }
+]
+```
 
-   
-### Response
+### [`/new`](http://localhost:8080/students/new) (POST)
+Create  a new Student entry
+ 
+#### Request Body
+A student object. Note that the studentId is auto assigned in the database so is not needed in the request.
+```
+{
+  "name": "Mister New Student",
+  "major": "CSC",
+  "gpa": 3.28
+}
+```
+#### Response - The updated list of Students.
 
-     [
-   
-      {"studentId": 1, "name": "sample1", "major": "csc", "gpa": 3.89}, 
-   
-      { "studentId": 4, "name": "sample4", "major": "csc", "gpa": 3.55}
-   
-     ]
+```
+[
+  {
+    "studentId": 1,
+    "name": "Alice Smith",
+    "major": "CSC",
+    "gpa": 3.88
+  },
+  {
+    "studentId": 2,
+    "name": "Bobby Stewart",
+    "major": "MAT",
+    "gpa": 2.97
+  },
+  {
+    "studentId": 3,
+    "name": "Mister New Student",
+    "major": "CSC",
+    "gpa": 3.28
+  }
+]
+```
 
-## Get Honors students
+### [`/update/{studentId}`](http://localhost:8080/students/update/1) (PUT)
+Update an existing Student.
 
-### Request
+#### Parameters
+- Path Variable: `studentId` <integer> - REQUIRED
 
-    `GET /students/honors?gpa=3.5`
+#### Request Body
+A student object with the updates.
+```
+{
+  "name": "Mister Updated Student",
+  "major": "CSC",
+  "gpa": 3.45
+}
+```
+#### Response - the updated Student object.
+```
+{
+  "studentId": 1,
+  "name": "Mister Updated Student",
+  "major": "CSC",
+  "gpa": 3.45
+}
+```
 
-    `http://localhost:8080/students/honors?gpa=3.5`
+### [`/delete/{studentId}`](http://localhost:8080/students/delete/1) (PUT)
+Delete an existing Student.
 
-   
-### Response
+#### Parameters
+- Path Variable: `studentId` <integer> - REQUIRED
 
-   [
-   
-     {"studentId": 1, "name": "sample1", "major": "csc", "gpa": 3.89}, 
-   
-     {"studentId": 2, "name": "sample2", "major": "mat", "gpa": 4.0},    
-
-     { "studentId": 4, "name": "sample4", "major": "csc", "gpa": 3.55}
-     
-   ]
-
-## Update an existing Student
-
-### Request
-
-    `PUT /students/update/{studentId}`
-    
-    `http://localhost:8080/students/update/1` --data '{ "name": "sampleUpdated", "major": "csc", "gpa": 3.92}'
-
-   ### Response
-   
-    {
-      "studentId": 1, "name": "sampleUpdated", "major": "csc", "gpa": 3.92
-    }
-
-
-## Delete an existing Student
-
-### Request
-
-    `DELETE /students/delete/{studentId}`
-    
-    `http://localhost:8080/students/delete/1`
-
-   ### Response
-   
-   [
-   
-     {"studentId": 2, "name": "sample2", "major": "mat", "gpa": 4.0}, 
-   
-     { "studentId": 3, "name": "sample3", "major": "eng", "gpa": 3.25},
-
-     { "studentId": 4, "name": "sample4", "major": "csc", "gpa": 3.55}
-   
-  ]
-
-
-
-
-
-
-
-
+#### Response - the updated list of Students.
+```
+[
+  {
+    "studentId": 2,
+    "name": "Bobby Stewart",
+    "major": "MAT",
+    "gpa": 2.97
+  },
+{
+    "studentId": 3,
+    "name": "Mister Updated Student",
+    "major": "CSC",
+    "gpa": 3.28
+  }
+]
+```
