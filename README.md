@@ -52,7 +52,7 @@ Gets a list of all Students in the database.
 Gets an individual Student in the system. Each Student is identified by a numeric `studentId`
 
 #### Parameters
-- Path Variable: `studentId` <integer> - REQUIRED
+- Path Variable: `studentId` &lt;integer&gt; - REQUIRED
 
 #### Response - A single Student
 
@@ -68,7 +68,7 @@ Gets an individual Student in the system. Each Student is identified by a numeri
 Gets a list of students with a name that contains the given string.
 
 #### Parameters
-- query parameter: `search` <String> - REQUIRED
+- query parameter: `search` lt;String&gt; - REQUIRED
 
 #### Response - A JSON array of Student objects.
 
@@ -93,7 +93,7 @@ Gets a list of students with a name that contains the given string.
 Gets a list of students for a named major.
 
 #### Parameters
-- path variable: `major` <String> - REQUIRED
+- path variable: `major` &lt;String&gt; - REQUIRED
 
 #### Response - A JSON array of Student objects.
 
@@ -117,7 +117,7 @@ Gets a list of students for a named major.
 Gets a list of students with a GPA meeting the Threshold.
 
 #### Parameters
-- query parameter: `gpa` <Double> - REQUIRED
+- query parameter: `gpa` &lt;Double&gt; - REQUIRED
 
 #### Response - A JSON array of Student objects.
 
@@ -179,7 +179,7 @@ A student object. Note that the studentId is auto assigned in the database so is
 Update an existing Student.
 
 #### Parameters
-- Path Variable: `studentId` <integer> - REQUIRED
+- Path Variable: `studentId` &lt;integer&gt; - REQUIRED
 
 #### Request Body
 A student object with the updates.
@@ -204,7 +204,7 @@ A student object with the updates.
 Delete an existing Student.
 
 #### Parameters
-- Path Variable: `studentId` <integer> - REQUIRED
+- Path Variable: `studentId` &lt;integer&gt; - REQUIRED
 
 #### Response - the updated list of Students.
 ```
