@@ -6,10 +6,11 @@ Simple CRUD API for Student Objects
 
 ## Installation
 - Get the project
-    - clone
-  
-        `git clone https://github.com/uncg-csc340/sp25-crud-api-jpa.git` OR
-    - download zip.
+    - clone  
+        ```
+      git clone https://github.com/uncg-csc340/sp25-crud-api-jpa.git
+        ``` 
+    - OR download zip.
 - Open the project in IntelliJ.
 - This project is built to run with jdk 21.
 - [`/src/main/resources/application.properties`](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/d117dd0cad30a0453254dd261248c249be9654aa/src/main/resources/application.properties) file  is the configuration for the MySQL database on your localhost.
