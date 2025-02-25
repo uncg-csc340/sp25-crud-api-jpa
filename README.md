@@ -48,7 +48,6 @@ Simple CRUD API for Student Objects
   - Return a Response Object.
   - It asks the Service class to perform data access functions.
   - The Service class is [`@Autowired`](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/8a7a97df778a6bb2280d680a80f3c3ffe6166ec1/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentController.java#L19) here as well :)
-    - 
 ## API Endpoints
 Base URL: [`http://localhost:8080/students`](http://localhost:8080/students)
 
