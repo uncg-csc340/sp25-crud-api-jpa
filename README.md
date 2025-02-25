@@ -36,7 +36,7 @@ Simple CRUD API for Student Objects
   - Annotate it as a `@Repository`.
   - We parametrize this using our object and its ID type.
     - `public interface StudentRepository extends JpaRepository<Student, Integer>` => We want to apply the JPA repository operations on the `Student` type. The `Student` has an ID of type `int`.
-  - If we need special database queries that are not the standard ones mentioned above, we can create a method with a special purpose query as shown. This is an interface so no implementation body.
+  - If we need special database queries that are not the standard ones mentioned above, we can create [a method with a special purpose query](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/6d3557fbdd87f2d53bc9b80c7169bb7819d9502d/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentRepository.java#L17) as shown. This is an interface so no implementation body.
 - [Rest Controller](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/8a7a97df778a6bb2280d680a80f3c3ffe6166ec1/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentController.java#L15)
   - Annotates as a `@RestController`.
   - All the API endpoints mapped inside this controller will start with `/students`.
