@@ -39,6 +39,7 @@ Simple CRUD API for Student Objects
     - `public interface StudentRepository extends JpaRepository<Student, Integer>` => We want to apply the JPA repository operations on the `Student` type. The `Student` has an ID of type `int`.
   - If we need special database queries that are not the standard ones mentioned above, we can create [a method with a special purpose query](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/6d3557fbdd87f2d53bc9b80c7169bb7819d9502d/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentRepository.java#L17) as shown. This is an interface so no implementation body.
 - [Service](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/7e8bf9e535b98dd33508db2277ea864c9a4f66b4/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentService.java#L13)
+  - Annotated as a `@Service`.
   - It is the go-between from controller to database. In here we define what functions we need from the repository. A lot of the functions are default functions that our repository inherits from JPA (save, delete, findAll, findByX), some of them are custom made (getHonorsStudents, getStudentsByName).
   - It asks the repository to perform SQL queries.
   - The Repository class is [`@Autowired`](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/8a7a97df778a6bb2280d680a80f3c3ffe6166ec1/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentService.java#L15). This is for managing the dependency to the repository. Do not use a constructor to make a Repository object, you will get errors. 
