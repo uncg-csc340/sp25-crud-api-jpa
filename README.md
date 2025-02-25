@@ -25,6 +25,7 @@ Simple CRUD API for Student Objects
   - Verify your username and password is spelled correctly in the properties file.
 - Build and run the main class. You should see a new table created in the aforementioned database.
 ## Notes
+### StudentX Java classes have different purposes: Separation of concerns!
 - [Entity](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/8a7a97df778a6bb2280d680a80f3c3ffe6166ec1/src/main/java/com/csc340/sp25_crud_api_demo/student/Student.java#L5)
   - The Student class is annotated as an `@Entity `. This is used by Hibernate (an implementation of the Jakarta Persistence API) to map class attributes to database tables and SQL types.
   - We also annotated with `@Table` to give Hibernate directions to use this specific table name. This is optional but it helps with naming conventions.
@@ -37,12 +38,16 @@ Simple CRUD API for Student Objects
   - We parametrize this using our object and its ID type.
     - `public interface StudentRepository extends JpaRepository<Student, Integer>` => We want to apply the JPA repository operations on the `Student` type. The `Student` has an ID of type `int`.
   - If we need special database queries that are not the standard ones mentioned above, we can create [a method with a special purpose query](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/6d3557fbdd87f2d53bc9b80c7169bb7819d9502d/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentRepository.java#L17) as shown. This is an interface so no implementation body.
+- [Service](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/7e8bf9e535b98dd33508db2277ea864c9a4f66b4/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentService.java#L13)
+  - It is the go-between from controller to database. In here we define what functions we need from the repository. A lot of the functions are default functions that our repository inherits from JPA (save, delete, findAll, findByX), some of them are custom made (getHonorsStudents, getStudentsByName).
+  - It asks the repository to perform SQL queries.
+  - The Repository class is [`@Autowired`](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/8a7a97df778a6bb2280d680a80f3c3ffe6166ec1/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentService.java#L15). This is for managing the dependency to the repository. Do not use a constructor to make a Repository object, you will get errors. 
 - [Rest Controller](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/8a7a97df778a6bb2280d680a80f3c3ffe6166ec1/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentController.java#L15)
-  - Annotates as a `@RestController`.
+  - Annotated as a `@RestController`.
   - All the API endpoints mapped inside this controller will start with `/students`.
-  - Return a Response Object. 
-  - The Service class is [`@Autowired`](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/8a7a97df778a6bb2280d680a80f3c3ffe6166ec1/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentController.java#L19). Do not use a constructor, you will get errors.
-    - In the Service class,the Repository class is also [`@Autowired`](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/8a7a97df778a6bb2280d680a80f3c3ffe6166ec1/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentService.java#L15)  :)
+  - Return a Response Object.
+  - It asks the Service class to perform data access functions.
+  - The Service class is [`@Autowired`](https://github.com/uncg-csc340/sp25-crud-api-jpa/blob/8a7a97df778a6bb2280d680a80f3c3ffe6166ec1/src/main/java/com/csc340/sp25_crud_api_demo/student/StudentController.java#L19) here as well :)
     - 
 ## API Endpoints
 Base URL: [`http://localhost:8080/students`](http://localhost:8080/students)
